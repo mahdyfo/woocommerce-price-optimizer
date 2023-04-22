@@ -11,7 +11,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-Are you an eCommerce business owner struggling to determine the best price for your products? Pricimizer offers cutting-edge AI technology to help you find the optimal price that maximizes your profits. Our AI engine automatically tests different prices for each of your products and learns from your customers' behaviors to identify the most profitable price.
+Are you an online shop owner looking to find the best prices for your products? Pricimizer offers cutting-edge AI technology to help you find the optimal price that maximizes your profits. Our AI engine automatically tests different prices for each of your products and learns from your customers' behaviors to identify the most profitable price.
 
 We understand that the key to maximizing profits is finding the right balance between demand and price. Our AI engine takes all of this into consideration to ensure that you are always pricing your products at the most profitable rate for each individual customer.
 
