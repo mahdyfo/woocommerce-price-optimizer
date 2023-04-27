@@ -8,10 +8,10 @@ class Pricimizer_Helper
     /**
      * @param $ip
      * @param $purpose
-     * @param $deep_detect
+     * @param $deepDetect
      * @return array|string|null
      */
-    public static function getLocationInfo($ip = null, $purpose = 'location', $deep_detect = true)
+    public static function getLocationInfo($ip = null, $purpose = 'location', $deepDetect = true)
     {
         // Memory cache check
         $memoryCacheKey = __METHOD__ . '.' . sha1(implode('.', func_get_args()));
@@ -29,7 +29,7 @@ class Pricimizer_Helper
         $output = null;
         if (filter_var($ip, FILTER_VALIDATE_IP) === false) {
             $ip = sanitize_text_field($_SERVER['REMOTE_ADDR']);
-            if ($deep_detect) {
+            if ($deepDetect) {
                 if (filter_var(@$_SERVER['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP)) {
                     $ip = sanitize_text_field($_SERVER['HTTP_X_FORWARDED_FOR']);
                 }
@@ -117,14 +117,14 @@ class Pricimizer_Helper
         }
 
         if (isset($_SERVER)) {
-            $agent = $_SERVER['HTTP_USER_AGENT'];
+            $agent = sanitize_text_field($_SERVER['HTTP_USER_AGENT']);
         } else {
             global $HTTP_SERVER_VARS;
             if (isset($HTTP_SERVER_VARS)) {
-                $agent = $HTTP_SERVER_VARS['HTTP_USER_AGENT'];
+                $agent = sanitize_text_field($HTTP_SERVER_VARS['HTTP_USER_AGENT']);
             } else {
                 global $HTTP_USER_AGENT;
-                $agent = $HTTP_USER_AGENT;
+                $agent = sanitize_text_field($HTTP_USER_AGENT);
             }
         }
         $ros[] = ['android', 'Android'];
