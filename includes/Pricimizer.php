@@ -184,14 +184,17 @@ class Pricimizer
 
         switch ($pricingType) {
             case 'custom_price':
-                // Validate
+                $explodedPrices = [];
                 if (isset($_POST['custom_price'])) {
-                    $explodedPrices = explode(',', $_POST['custom_price']);
+                    $explodedPrices = sanitize_text_field($_POST['custom_price']);
+                    $explodedPrices = explode(',', $explodedPrices);
+                    $explodedPrices = array_map('sanitize_text_field', $explodedPrices);
+                    // Validate
                      if (!array_filter($explodedPrices, 'is_numeric')) {
                         return;
                     }
                 }
-                $priceData = sanitize_text_field($_POST['custom_price']);
+                $priceData = implode(',', $explodedPrices);
                 break;
             case 'range':
                 // Validate
@@ -219,7 +222,7 @@ class Pricimizer
         }
 
         update_post_meta($productId, 'pricimizer_meta', [
-            'pricing_type' => $_POST['price_input_radio'],
+            'pricing_type' => $pricingType,
             'price_data' => $priceData,
         ]);
     }
@@ -370,8 +373,12 @@ class Pricimizer
         ) {
             return;
         }
+        $explodedPrices = [];
         if (isset($_POST['custom_price'])) {
-            $explodedPrices = explode(',', $_POST['custom_price']);
+            $explodedPrices = sanitize_text_field($_POST['custom_price']);
+            $explodedPrices = explode(',', $explodedPrices);
+            $explodedPrices = array_map('sanitize_text_field', $explodedPrices);
+            // Validate
             if (!array_filter($explodedPrices, 'is_numeric')) {
                 return;
             }
@@ -394,7 +401,7 @@ class Pricimizer
             'pricing_range_step' => isset($_POST['pricing_range_step']) ? floatval($_POST['pricing_range_step']) : '',
             'pricing_range_max' => isset($_POST['pricing_range_max']) ? floatval($_POST['pricing_range_max']) : '',
             'pricing_custom' => isset($_POST['pricing_custom']) ? sanitize_text_field($_POST['pricing_custom']) : '',
-            'optimize_by' => isset($_POST['optimize_by']) ? $_POST['optimize_by'] : [], // Array, no need to sanitize because it was validated strictly
+            'optimize_by' => $explodedPrices,
         ];
 
         update_option('pricimizer_global_settings', $globalSettings);
