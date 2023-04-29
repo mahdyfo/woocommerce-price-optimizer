@@ -1,10 +1,10 @@
 === Pricimizer: Smart price optimizer ===
 Contributors: mahdyfo
 Donate link: https://pricimizer.com/
-Tags: pricing, optimization, WooCommerce, AI, machine learning, Dynamic pricing, Smart pricing strategy, ecommerce, Automatic pricing, conversion rate, profit
+Tags: Dynamic pricing, optimization, WooCommerce, machine learning, Smart pricing strategy
 Requires at least: 4.0
 Tested up to: 6.2
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -14,6 +14,16 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Are you an online shop owner looking to find the best prices for your products? Pricimizer offers cutting-edge AI technology to help you find the optimal price that maximizes your profits. Our AI engine automatically tests different prices for each of your products and learns from your customers' behaviors to identify the most profitable price.
 
 We understand that the key to maximizing profits is finding the right balance between demand and price. Our AI engine takes all of this into consideration to ensure that you are always pricing your products at the most profitable rate for each individual customer.
+
+- Test different prices for your products automatically.
+
+- Our AI Learns from your customer behaviors to find the best price.
+
+- We set the most profitable price for each of your products!
+
+We understand that the key to maximizing profits is finding the right balance between demand and price. This way even the inflation will be taken into account. Our AI engine takes all of this into consideration to ensure that you are always pricing your products at the most profitable rate.
+
+Say goodbye to copying from your competitors, we will take into account all the factors that matter to your business. From the month of the year to the country and even the day of the week, our AI analyzes them all to offer each customer the optimal price. Plus, you can customize which factors to include and exclude to ensure a pricing strategy that is uniquely tailored to your business needs. Don't settle for average profits - let us help you reach your full potential. Sign up for our price optimization service today and start seeing results!
 
 == Installation ==
 
