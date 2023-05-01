@@ -16,6 +16,9 @@ class Pricimizer_Helper
         // Memory cache check
         $memoryCacheKey = __METHOD__ . '.' . sha1(implode('.', func_get_args()));
         if (isset(self::$memoryCached[$memoryCacheKey])) {
+            if (self::$memoryCached[$memoryCacheKey] === false) {
+                return null;
+            }
             return self::$memoryCached[$memoryCacheKey];
         }
 
@@ -26,7 +29,6 @@ class Pricimizer_Helper
             return $cached;
         }
 
-        $output = null;
         if (filter_var($ip, FILTER_VALIDATE_IP) === false) {
             $ip = sanitize_text_field($_SERVER['REMOTE_ADDR']);
             if ($deepDetect) {
@@ -43,6 +45,7 @@ class Pricimizer_Helper
             return null;
         }
 
+        $output = null;
         $purpose = str_replace(["name", "\n", "\t", " ", "-", "_"], null, strtolower(trim($purpose)));
         $support = ["country", "countrycode", "state", "region", "city", "location", "address"];
         $continents = [
@@ -55,7 +58,12 @@ class Pricimizer_Helper
             "SA" => "South America",
         ];
         if (in_array($purpose, $support)) {
+            var_dump('exec');
             $body = wp_remote_retrieve_body(wp_remote_get('http://www.geoplugin.net/json.gp?ip=' . $ip));
+            if (empty($body)) {
+                self::$memoryCached[$memoryCacheKey] = false;
+                return null;
+            }
             $ipdat = @json_decode($body);
             if (@strlen(trim($ipdat->geoplugin_countryCode)) == 2) {
                 switch ($purpose) {
@@ -97,7 +105,9 @@ class Pricimizer_Helper
         }
 
         // Remember country of the ip for 24 hours
-        set_transient($transientKey, $output, 24 * 60 * 60);
+        if (!empty($output)) {
+            set_transient($transientKey, $output, 24 * 60 * 60);
+        }
 
         // Remember value for the whole current request
         self::$memoryCached[$memoryCacheKey] = $output;

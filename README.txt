@@ -1,7 +1,7 @@
-=== Pricimizer: Smart price optimizer ===
+=== Pricimizer: Smart price optimizer for WooCommerce ===
 Contributors: mahdyfo
 Donate link: https://pricimizer.com/
-Tags: Dynamic pricing, optimization, WooCommerce, machine learning, Smart pricing strategy
+Tags: Dynamic pricing, optimization, WooCommerce, machine learning, AI
 Requires at least: 4.0
 Tested up to: 6.2
 Stable tag: 1.0.1
@@ -52,12 +52,16 @@ Depending on the laws and regulations of your country, you may need to inform yo
 
 == Changelog ==
 
+= 1.0.1 =
+
+Bug fixes.
+
 = 1.0.0 =
 
 Initial release.
 
 == Upgrade Notice ==
 
-= 1.0.0 =
+= 1.0.1 =
 
-Initial release. No upgrade necessary.
+No upgrade necessary.

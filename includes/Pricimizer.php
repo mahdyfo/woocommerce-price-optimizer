@@ -383,6 +383,7 @@ class Pricimizer
                 return;
             }
         }
+        $optimizeByArray = [];
         if (isset($_POST['optimize_by'])) {
             if (!is_array($_POST['optimize_by'])) {
                 return;
@@ -391,6 +392,7 @@ class Pricimizer
                 if (!in_array($optimizeBy, ['month', 'weekday', 'country', 'os'])) {
                     return;
                 }
+                $optimizeByArray[] = sanitize_text_field($optimizeBy);
             }
         }
 
@@ -401,7 +403,7 @@ class Pricimizer
             'pricing_range_step' => isset($_POST['pricing_range_step']) ? floatval($_POST['pricing_range_step']) : '',
             'pricing_range_max' => isset($_POST['pricing_range_max']) ? floatval($_POST['pricing_range_max']) : '',
             'pricing_custom' => isset($_POST['pricing_custom']) ? sanitize_text_field($_POST['pricing_custom']) : '',
-            'optimize_by' => $explodedPrices,
+            'optimize_by' => $optimizeByArray,
         ];
 
         update_option('pricimizer_global_settings', $globalSettings);
@@ -644,7 +646,10 @@ class Pricimizer
         $optimizeBy = $globalSettings['optimize_by'];
         $otherVariations = [];
         foreach ($optimizeBy as $key) {
-            $otherVariations[$key] = $this->getOptimizeByKey($key);
+            $value = $this->getOptimizeByKey($key);
+            if (!is_null($value)) {
+                $otherVariations[$key] = $this->getOptimizeByKey($key);
+            }
         }
 
         switch ($postMeta['pricing_type']) {
@@ -734,7 +739,10 @@ class Pricimizer
 
         $variations = [];
         foreach ($globalSettings['optimize_by'] as $key) {
-            $variations[$key] = $this->getOptimizeByKey($key);
+            $value = $this->getOptimizeByKey($key);
+            if (!is_null($value)) {
+                $variations[$key] = $this->getOptimizeByKey($key);
+            }
         }
 
         // Check if the product is using dynamic pricing
@@ -749,8 +757,8 @@ class Pricimizer
         }
 
         echo '<script type="text/javascript">
-            jQuery(window).on(\'load\', function() {               
-                pricimizer_' . htmlspecialchars($action) . '(' . json_encode([$json]) .');
+            jQuery(window).on(\'load\', function() {
+                pricimizer_' . esc_html($action) . '(' . json_encode([$json]) .');
             });
         </script>';
     }
