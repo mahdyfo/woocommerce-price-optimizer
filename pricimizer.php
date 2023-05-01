@@ -1,12 +1,14 @@
 <?php
 /*
-Plugin Name: Pricimizer: Smart price optimizer
-Description: Revolutionize Your Pricing Strategy with This Game-Changing Plugin for Maximum Profitability
-Plugin URI:  https://pricimizer.com
-Version: 1.0.0
-Author: Pricimizer
-Text Domain: pricimizer-woocommerce
-*/
+ * Plugin Name:       Pricimizer
+ * Plugin URI:        https://pricimizer.com
+ * Description:       Revolutionize Your Pricing Strategy with This Game Changing Plugin for Maximum Profitability
+ * Version:           1.0.0
+ * Author:            Pricimizer
+ * License:           GPL v2 or later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain:       pricimizer-woocommerce
+ */
 
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
