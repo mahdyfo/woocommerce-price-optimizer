@@ -2,8 +2,8 @@
 /*
  * Plugin Name:       Pricimizer
  * Plugin URI:        https://pricimizer.com
- * Description:       Revolutionize your pricing strategy with this game changing plugin for maximum profitability
- * Version:           1.0.1
+ * Description:       Revolutionize your pricing strategy with this game changing dynamic pricing plugin for maximum profitability
+ * Version:           1.1.0
  * Author:            Pricimizer
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html

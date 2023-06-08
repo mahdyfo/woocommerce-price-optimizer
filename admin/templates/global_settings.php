@@ -2,13 +2,7 @@
 $data = get_option('pricimizer_global_settings');
 
 $api_key = isset($data['api_key']) ? $data['api_key'] : '';
-$pricing_model = isset($data['pricing_model']) ? $data['pricing_model'] : '';
-$pricing_range_min = isset($data['pricing_range_min']) ? $data['pricing_range_min'] : '';
-$pricing_range_max = isset($data['pricing_range_max']) ? $data['pricing_range_max'] : '';
-$pricing_range_step = isset($data['pricing_range_step']) ? $data['pricing_range_step'] : '';
-$pricing_custom = isset($data['pricing_custom']) ? $data['pricing_custom'] : '';
 $optimize_by = isset($data['optimize_by']) ? $data['optimize_by'] : [];
-
 ?>
 
 <h1>Pricimizer - Global Settings</h1>
@@ -24,58 +18,6 @@ $optimize_by = isset($data['optimize_by']) ? $data['optimize_by'] : [];
                     <td style="padding-left:40px">
                         <input type="text" name="api_key" id="api_key" placeholder="API Key" value="<?php echo esc_html($api_key); ?>" required>
                         <a class="button" style="vertical-align:baseline" target="_blank" href="https://pricimizer.com/register?for=wordpress"><b>Get your API key</b></a>
-                    </td>
-                </tr>
-
-                <tr>
-                    <th><span title="For The products configured to retrieve pricing information from pricimizer global settings."><i class="fa fa-info-circle"></i> <b>Default pricing model:</b></span></th>
-                </tr>
-                <tr class="alternate">
-                    <td style="padding-left:40px">
-                       <label for="range">
-                            <input class="pricimizer_stock_price" type="radio" name="pricing_model" id="range" value="range" <?php echo esc_html($pricing_model) == 'range' ? 'checked' : '' ?> required>
-                            <span>Range</span>
-                        </label>
-
-                        <label for="custom_price" style="margin-left:30px">
-                            <input class="pricimizer_stock_price" type="radio" name="pricing_model" id="custom_price" value="custom_price" <?php echo esc_html($pricing_model) == 'custom_price' ? 'checked' : '' ?> required>
-                            <span>Custom Price</span>
-                        </label>
-                    </td>
-                </tr>
-
-                <tr class="range prici_setting" <?php echo esc_html($pricing_model) == 'range' ? '' : 'style="display: none;"'?>>
-                    <th style="padding-left:40px"><b>Set range prices:</b></th>
-                </tr>
-                <tr class="alternate price_range range prici_setting" <?php echo esc_html($pricing_model) == 'range' ? '' : 'style="display: none;"'?>>
-                    <td style="padding-left:40px">
-                        <div class="col-3">
-                            <label>
-                                <span>Min:</span>
-                                <input type="number" name="pricing_range_min" id="pricing_range_min" placeholder="Min" value="<?php echo esc_html($pricing_range_min); ?>" min="0" required>
-                            </label>
-                        </div>
-                        <div class="col-3">
-                            <label>
-                                <span>Step:</span>
-                                <input type="number" name="pricing_range_step" id="pricing_range_step" placeholder="Step" value="<?php echo esc_html($pricing_range_step); ?>" min="0" required>
-                            </label>
-                        </div>
-                        <div class="col-3">
-                            <label>
-                                <span>Max:</span>
-                                <input type="number" name="pricing_range_max" id="pricing_range_max" placeholder="Max" value="<?php echo esc_html($pricing_range_max); ?>" min="0" required>
-                            </label>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr class="custom_price prici_setting" <?php echo esc_html($pricing_model) == 'custom_price' ? '' : 'style="display: none;"'?>>
-                    <th style="padding-left:40px"><b>Set Custom Prices:</b> <small>(Comma separated)</small></th>
-                </tr>
-                <tr class="alternate custom_price prici_setting" <?php echo esc_html($pricing_model) == 'custom_price' ? '' : 'style="display: none;"'?>>
-                    <td style="padding-left:40px">
-                        <input type="text" name="pricing_custom" id="pricing_custom" placeholder="Custom Prices" value="<?php echo esc_html($pricing_custom); ?>" required>
                     </td>
                 </tr>
 

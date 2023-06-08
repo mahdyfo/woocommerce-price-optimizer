@@ -51,9 +51,9 @@ class Pricimizer
             return;
         }
 
-        if (get_option('pricimizer_api_key_validity') == 'invalid') {
-            echo '<div class="notice error is-dismissible">
-                <p>Your API key is invalid. Please change your key in <a href="' . admin_url() . 'admin.php?page=' . PRICIMIZER_PLUGIN_NAME . '">Pricimizer settings page</a>.</p>
+        if (empty(get_option('pricimizer_api_key_validity')) || get_option('pricimizer_api_key_validity') == 'invalid') {
+            echo '<div class="notice notice-warning is-dismissible">
+                <p>You have not set any dynamic pricing for your products. Please edit your products and change the price from fixed to dynamic. This notice will disappear after a while.</p>
             </div>';
             return;
         }
@@ -117,7 +117,7 @@ class Pricimizer
             // Send only not cached product ids to get their price
             $diffVariations = [];
             foreach ($variations as $variation) {
-                if (in_array($variation['id'], $differences)) {
+                if (isset($variation['id']) && in_array($variation['id'], $differences)) {
                     $diffVariations[] = $variation;
                 }
             }
@@ -366,23 +366,6 @@ class Pricimizer
      */
     public function updateGlobalSettings()
     {
-        // Validate
-        if (
-            !isset($_POST['pricing_model']) ||
-            !in_array($_POST['pricing_model'], ['range', 'custom_price'])
-        ) {
-            return;
-        }
-        $explodedPrices = [];
-        if (isset($_POST['custom_price'])) {
-            $explodedPrices = sanitize_text_field($_POST['custom_price']);
-            $explodedPrices = explode(',', $explodedPrices);
-            $explodedPrices = array_map('sanitize_text_field', $explodedPrices);
-            // Validate
-            if (!array_filter($explodedPrices, 'is_numeric')) {
-                return;
-            }
-        }
         $optimizeByArray = [];
         if (isset($_POST['optimize_by'])) {
             if (!is_array($_POST['optimize_by'])) {
@@ -398,11 +381,6 @@ class Pricimizer
 
         $globalSettings = [
             'api_key' => isset($_POST['api_key']) ? sanitize_text_field($_POST['api_key']) : '',
-            'pricing_model' => isset($_POST['pricing_model']) ? sanitize_text_field($_POST['pricing_model']) : '',
-            'pricing_range_min' => isset($_POST['pricing_range_min']) ? floatval($_POST['pricing_range_min']) : '',
-            'pricing_range_step' => isset($_POST['pricing_range_step']) ? floatval($_POST['pricing_range_step']) : '',
-            'pricing_range_max' => isset($_POST['pricing_range_max']) ? floatval($_POST['pricing_range_max']) : '',
-            'pricing_custom' => isset($_POST['pricing_custom']) ? sanitize_text_field($_POST['pricing_custom']) : '',
             'optimize_by' => $optimizeByArray,
         ];
 

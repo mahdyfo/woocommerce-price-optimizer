@@ -1,10 +1,10 @@
-=== Pricimizer: Smart price optimizer for WooCommerce ===
+=== Pricimizer: Dynamic pricing for WooCommerce ===
 Contributors: mahdyfo
 Donate link: https://pricimizer.com/
 Tags: Dynamic pricing, optimization, WooCommerce, machine learning, AI
 Requires at least: 4.0
 Tested up to: 6.2
-Stable tag: 1.0.1
+Stable tag: 1.1.0
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -30,7 +30,7 @@ Say goodbye to copying from your competitors, we will take into account all the 
 1. You must have WooCommerce installed.
 2. Activate the plugin through the 'Plugins' page in your WordPress.
 3. Go to the Pricimizer settings in the sidebar menu and set it up.
-4. Edit each product page and set a dynamic pricing model for them. Alternatively you can set them to read from global settings and then set a default pricing model in pricimizer settings.
+4. Edit each product page and set a dynamic pricing model for them.
 
 == Frequently Asked Questions ==
 
@@ -52,6 +52,10 @@ Depending on the laws and regulations of your country, you may need to inform yo
 
 == Changelog ==
 
+= 1.1.0 =
+
+Made global settings simpler.
+
 = 1.0.1 =
 
 Bug fixes.
@@ -62,6 +66,4 @@ Initial release.
 
 == Upgrade Notice ==
 
-= 1.0.1 =
-
-No upgrade necessary.
+= 1.1.0 =

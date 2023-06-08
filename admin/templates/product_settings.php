@@ -21,7 +21,7 @@ if (!empty($meta)) {
     }
 }
 
-echo '<div class="product_custom_field"><h3>Customize Product Price</h3>';
+echo '<div class="product_custom_field"><h3>Dynamic Pricing</h3>';
 woocommerce_wp_hidden_input([
     'id' => 'price_input_type',
     'label' => __('price_input_type ', 'woocommerce'),
@@ -32,13 +32,15 @@ woocommerce_wp_radio([
     'label' => '',
     'options' => [
         'fixed_price' => __('Fixed price'),
-        'range' => __('Range'),
         'custom_price' => __('Custom price'),
-        'read_from_global_settings' => __('Read from global settings'),
+        'range' => __('Range'),
     ],
     'default' => $pricingType,
 ]);
-echo '<div id="show_range" class="price_set" style="display: none;" >';
+echo '<div id="show_range" class="price_set" style="display: none;" >
+<p style="padding-top:0">Imagine you want to test these prices for your product to find the most profitable one: <b>10$, 15$, 20$, 25$, 30$, 35$</b><br />
+In this case you can enter these values to try all those prices: <b>Min = 10</b> | <b>Step = 5</b> | <b>Max = 35</b>
+</p>';
 woocommerce_wp_text_input([
     'id' => 'min',
     'placeholder' => 'Enter Minimum value ',
@@ -60,7 +62,11 @@ woocommerce_wp_text_input([
     'type' => 'text',
     'value' => $max,
 ]);
-echo '</div><div id="show_custom_price" class="price_set" style="display: none;">';
+echo '</div><div id="show_custom_price" class="price_set" style="display: none;">
+<p style="padding-top:0">
+Imagine you want to test these prices: <b>10$, 15$, 20$, 25$, 30$, 35$</b><br />
+In this case you can enter <b>10,15,20,25,30,35</b> (comma separated without currency sign) and it will test all of these prices for the product to find the most profitable one.
+</p>';
 woocommerce_wp_text_input([
     'id' => 'custom_price',
     'placeholder' => 'Enter custom prices',
